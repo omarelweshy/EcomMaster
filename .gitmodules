@@ -1,0 +1,3 @@
+[submodule "EcomMaster-user-service"]
+	path = EcomMaster-user-service
+	url = git@github.com:omarelweshy/EcomMaster-user-service.git
