@@ -1,12 +1,29 @@
-version: '3'
-
 services:
   db:
-    image: postgres:16.3
     container_name: 'ecommaster-db'
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
     env_file:
       - .env
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      timeout: 4s
+    image: postgres:16.3
     ports:
       - '5432:5432'
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+  user-service:
+    build:
+      context: ./EcomMaster-user-service
+      dockerfile: Dockerfile
+    container_name: 'EcomMaster-user-service'
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - ./EcomMaster-user-service/.env
+    ports:
+      - '8000:8000'
+
+version: '3'
