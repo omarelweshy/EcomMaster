@@ -19,5 +19,15 @@ services:
       - ./EcomMaster-user-service/.env
     ports:
       - '8000:8000'
-
+  product-service:
+    build:
+      context: ./EcomMaster-product-service
+      dockerfile: Dockerfile
+    container_name: 'EcomMaster-product-service'
+    depends_on:
+      - 'db'
+    env_file:
+      - ./EcomMaster-product-service/.env
+    ports:
+      - '8001:8001'
 version: '3'
