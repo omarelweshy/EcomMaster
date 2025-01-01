@@ -4,8 +4,9 @@ import (
 	"net/http"
 	"strings"
 
+	"user-service/internal/util"
+
 	"github.com/gin-gonic/gin"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/util"
 )
 
 func JWTAuthMiddleware() gin.HandlerFunc {

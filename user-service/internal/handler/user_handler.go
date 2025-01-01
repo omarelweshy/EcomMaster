@@ -3,12 +3,13 @@ package handler
 import (
 	"net/http"
 
+	"user-service/internal/form"
+	"user-service/internal/model"
+	"user-service/internal/service"
+	"user-service/internal/util"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/form"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/model"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/service"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/util"
 )
 
 type UserHandler struct {

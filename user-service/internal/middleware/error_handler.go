@@ -3,8 +3,9 @@ package middleware
 import (
 	"net/http"
 
+	"user-service/internal/util"
+
 	"github.com/gin-gonic/gin"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/util"
 )
 
 func ErrorHandler() gin.HandlerFunc {

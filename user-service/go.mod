@@ -1,8 +1,9 @@
-module github.com/omarelweshy/EcomMaster-user-service
+module user-service
 
 go 1.21.4
 
 require (
+	EcomMaster/pkg v0.0.0
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/PuerkitoBio/purell v1.2.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
@@ -64,3 +65,5 @@ require (
 	gorm.io/gorm v1.25.10 // indirect
 	sigs.k8s.io/yaml v1.4.0 // indirect
 )
+
+replace EcomMaster/pkg => ../pkg

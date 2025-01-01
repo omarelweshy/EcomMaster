@@ -3,8 +3,9 @@ package service
 import (
 	"errors"
 
-	"github.com/omarelweshy/EcomMaster-user-service/internal/model"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/repository"
+	"user-service/internal/model"
+	"user-service/internal/repository"
+
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )

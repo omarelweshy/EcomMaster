@@ -1,13 +1,14 @@
 package main
 
 import (
+	"EcomMaster/pkg/logger"
 	"log"
 	"os"
 
+	"user-service/internal/model"
+	"user-service/internal/router"
+
 	"github.com/joho/godotenv"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/logger"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/model"
-	"github.com/omarelweshy/EcomMaster-user-service/internal/router"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

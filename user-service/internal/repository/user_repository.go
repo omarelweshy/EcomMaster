@@ -3,7 +3,8 @@ package repository
 import (
 	"errors"
 
-	"github.com/omarelweshy/EcomMaster-user-service/internal/model"
+	"user-service/internal/model"
+
 	"gorm.io/gorm"
 )
 
