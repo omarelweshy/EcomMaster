@@ -23,6 +23,8 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 			util.RespondWithError(c, http.StatusBadRequest, "Validation failed", formattedErrors)
 			return
 		}
+		util.RespondWithError(c, http.StatusBadRequest, "Invalid request payload", nil)
+		return
 	}
 
 	err := h.ProductService.CreateProduct(form.Name, form.Description, form.Price, form.Stock) // We will update category later on

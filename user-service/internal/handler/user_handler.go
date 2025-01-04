@@ -35,7 +35,10 @@ func (h *UserHandler) Register(c *gin.Context) {
 			util.RespondWithError(c, http.StatusBadRequest, "Validation failed", formattedErrors)
 			return
 		}
+		util.RespondWithError(c, http.StatusBadRequest, "Invalid request payload", nil)
+		return
 	}
+
 	err := h.UserService.RegisterUser(form.Username, form.Email, form.Password, form.FirstName, form.LastName)
 	if err != nil {
 		switch err {
@@ -73,7 +76,10 @@ func (h *UserHandler) Login(c *gin.Context) {
 			util.RespondWithError(c, http.StatusBadRequest, "Validation failed", formattedErrors)
 			return
 		}
+		util.RespondWithError(c, http.StatusBadRequest, "Invalid request payload", nil)
+		return
 	}
+
 	user, err := h.UserService.LoginUser(form.Username, form.Password)
 	if err != nil {
 		switch err {
