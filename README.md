@@ -1,19 +1,14 @@
-# EcomMaster (In progress....)
+# EcomMaster Overview (In progress....)
 
-EcomMaster is a comprehensive e-commerce platform built with a microservices architecture using Golang. This project is designed to practice and showcase advanced concepts such as microservices, distributed databases, RPC, logging, Gin, PostgreSQL, and RabbitMQ.
-
+EcomMaster is an e-commerce platform designed to demonstrate the use of microservices and various technologies. It consists of multiple services handling different functionalities such as API Gateway, user management, product catalog, cart, order management, product reviews, and notifications.
 ## Table of Contents
 
-- [EcomMaster (In progress....)](#ecommaster-in-progress)
+- [EcomMaster Overview (In progress....)](#ecommaster-overview-in-progress)
   - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
   - [Microservices Breakdown](#microservices-breakdown)
   - [Technology Stacks](#technology-stacks)
   - [Architecture](#architecture)
 
-## Overview
-
-EcomMaster is an e-commerce platform designed to demonstrate the use of microservices and various technologies. It consists of multiple services handling different functionalities such as API Gateway, user management, product catalog, cart, order management, product reviews, and notifications.
 
 ## Microservices Breakdown
 
