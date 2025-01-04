@@ -4,66 +4,39 @@ EcomMaster is a comprehensive e-commerce platform built with a microservices arc
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Microservices](#microservices)
-- [Technology Stack (expected)](#technology-stack)
+- [EcomMaster (In progress....)](#ecommaster-in-progress)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Microservices Breakdown](#microservices-breakdown)
+  - [Technology Stacks](#technology-stacks)
+  - [Architecture](#architecture)
 
 ## Overview
 
-EcomMaster is an e-commerce platform designed to demonstrate the use of microservices and various technologies. It consists of multiple services handling different functionalities such as user management, product catalog, order management, payment processing, and notifications.
+EcomMaster is an e-commerce platform designed to demonstrate the use of microservices and various technologies. It consists of multiple services handling different functionalities such as API Gateway, user management, product catalog, cart, order management, product reviews, and notifications.
 
-## Microservices
+## Microservices Breakdown
 
-1. **User Service**
+1. **User Service**:  User registration, authentication, and profile management.
+2. **Product Catalog Service**: Manages product catalog, inventory, and categories.
+3. **Cart Service**: Handles shopping cart functionality.
+4. **Order Service**: Manages order creation, payments, and order history.
+5. **Review Service**: Handles product reviews and ratings.
+6. **Notification Service**: Sends emails or notifications (e.g., order confirmation).
+7. **API Gateway**: Routes requests to the appropriate microservice.
 
-   - User registration, authentication, and profile management.
-   - JWT-based authentication.
+## Technology Stacks
 
-2. **Product Catalog Service**
+| **Component**    | **Technology**             |
+| ---------------- | -------------------------- |
+| Language         | Golang                     |
+| Framework        | Gin, gRPC                  |
+| Database         | PostgreSQL, MongoDB, Redis |
+| Message Broker   | RabbitMQ                   |
+| Containerization | Docker                     |
+| Orchestration    | Kubernetes                 |
+| Communication    | gRPC, REST                 |
+| DevOps           | Jenkins                    |
 
-   - CRUD operations for products.
-   - Product searching and filtering.
-
-3. **Order Service**
-
-   - Order creation and management.
-   - Integration with Payment and Inventory services.
-
-4. **Payment Service**
-
-   - Payment processing.
-   - Integration with third-party payment gateways.
-
-5. **Inventory Service**
-
-   - Inventory management.
-   - Stock level updates.
-
-6. **Notification Service**
-   - Sending email/SMS notifications.
-   - Using RabbitMQ for message queuing.
-
-## Technology Stack
-
-- **Golang**: Main programming language for all microservices.
-- **Gin**: Web framework for building RESTful APIs.
-- **PostgreSQL**: Database for persistent storage.
-- **gRPC**: Protocol for communication between microservices.
-- **RabbitMQ**: Message broker for asynchronous communication.
-- **Elasticsearch**: Full-text search engine (for Search Service).
-- **Prometheus & Grafana**: Monitoring and alerting.
-- **Redis**: Caching layer.
-- **Kafka**: Event streaming platform for an event-driven architecture.
-- **Jaeger/Zipkin**: Distributed tracing.
-
-## Getting Started
-
-### Prerequisites
-
-- Golang (latest version)
-- Docker
-- PostgreSQL
-- RabbitMQ
-- Kafka
-- Elasticsearch
-- Redis
+## Architecture
+![Architecture](architecture.png)
