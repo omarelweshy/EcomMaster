@@ -1,6 +1,0 @@
-[submodule "EcomMaster-user-service"]
-	path = EcomMaster-user-service
-	url = git@github.com:omarelweshy/EcomMaster-user-service.git
-[submodule "EcomMaster-product-service"]
-	path = EcomMaster-product-service
-	url = git@github.com:omarelweshy/EcomMaster-product-service.git
