@@ -8,26 +8,26 @@ services:
       - '5432:5432'
     volumes:
       - ./data/db:/var/lib/postgresql/data
+  # product-service:
+  #   build:
+  #     context: ./product-service
+  #     dockerfile: Dockerfile
+  #   container_name: 'EcomMaster-product-service'
+  #   depends_on:
+  #     - 'db'
+  #   env_file:
+  #     - ./product-service/.env
+  #   ports:
+  #     - '8001:8001'
   user-service:
     build:
-      context: ./EcomMaster-user-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./user-service/Dockerfile
     container_name: 'EcomMaster-user-service'
     depends_on:
       - 'db'
     env_file:
-      - ./EcomMaster-user-service/.env
+      - ./user-service/.env
     ports:
       - '8000:8000'
-  product-service:
-    build:
-      context: ./EcomMaster-product-service
-      dockerfile: Dockerfile
-    container_name: 'EcomMaster-product-service'
-    depends_on:
-      - 'db'
-    env_file:
-      - ./EcomMaster-product-service/.env
-    ports:
-      - '8001:8001'
-version: '3'
+version: '3.8'

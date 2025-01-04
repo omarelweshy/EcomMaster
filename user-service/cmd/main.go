@@ -24,12 +24,10 @@ func setupDB() (*gorm.DB, error) {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file")
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
 	}
 
-	port := os.Getenv("PORT")
 	logger.InitLogger()
 
 	db, err := setupDB()
@@ -39,7 +37,7 @@ func main() {
 	db.AutoMigrate(&model.User{})
 
 	r := router.SetupRouter(db)
-	if err := r.Run(":" + port); err != nil {
+	if err := r.Run(":" + os.Getenv("PORT")); err != nil {
 		log.Fatal(err)
 	}
 }

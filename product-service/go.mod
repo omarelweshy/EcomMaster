@@ -3,6 +3,7 @@ module github.com/omarelweshy/EcomMaster-product-service
 go 1.21.4
 
 require (
+	EcomMaster/pkg v0.0.0
 	github.com/bytedance/sonic v1.11.6 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
@@ -43,3 +44,5 @@ require (
 	gorm.io/driver/postgres v1.5.9 // indirect
 	gorm.io/gorm v1.25.10 // indirect
 )
+
+replace EcomMaster/pkg => ../pkg
