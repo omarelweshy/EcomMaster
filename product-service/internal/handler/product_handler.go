@@ -37,7 +37,7 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 	return
 }
 
-func (h *ProductHandler) GetAllProducts(c *gin.Context) {
+func (h *ProductHandler) GetProducts(c *gin.Context) {
 	searchQuery, _ := c.GetQuery("search")
 	products, err := h.ProductService.GetProducts(searchQuery)
 	if err != nil {
@@ -46,4 +46,45 @@ func (h *ProductHandler) GetAllProducts(c *gin.Context) {
 	}
 	util.RespondWithSuccess(c, "products fetched", products)
 	return
+}
+
+func (h *ProductHandler) GetProductById(c *gin.Context) {
+	id := c.Param("id")
+	product, err := h.ProductService.GetProductById(id)
+	if err != nil {
+		util.RespondWithError(c, http.StatusNotFound, "Unable to fetch the product", nil)
+		return
+	}
+	util.RespondWithSuccess(c, "products fetched", product)
+	return
+}
+
+func (h *ProductHandler) UpdateProductById(c *gin.Context) {
+	id := c.Param("id")
+
+	var updateData map[string]interface{}
+	if err := c.ShouldBindJSON(&updateData); err != nil {
+		util.RespondWithError(c, http.StatusBadRequest, "Invalid request payload", nil)
+		return
+	}
+
+	updatedProduct, err := h.ProductService.UpdateProductById(id, updateData)
+	if err != nil {
+		util.RespondWithError(c, http.StatusNotFound, "Unable to fetch the product", nil)
+		return
+	}
+	util.RespondWithSuccess(c, "products fetched", updatedProduct)
+	return
+}
+
+func (h *ProductHandler) DeleteProductById(c *gin.Context) {
+	id := c.Param("id")
+
+	err := h.ProductService.DeleteProductById(id)
+	if err != nil {
+		util.RespondWithError(c, http.StatusNotFound, "Unable to delete product", nil)
+		return
+	}
+
+	util.RespondWithSuccess(c, "product deleted", nil)
 }

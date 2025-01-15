@@ -19,6 +19,9 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	// r.Use(middleware.ErrorHandler())
 
 	r.POST("/products", productHandler.CreateProduct)
-	r.GET("/products", productHandler.GetAllProducts)
+	r.GET("/products", productHandler.GetProducts)
+	r.GET("/product/:id", productHandler.GetProductById)
+	r.PATCH("/product/:id", productHandler.UpdateProductById)
+	r.DELETE("/product/:id", productHandler.DeleteProductById)
 	return r
 }
