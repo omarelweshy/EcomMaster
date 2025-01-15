@@ -2,6 +2,7 @@ package repository
 
 import (
 	"errors"
+	"fmt"
 
 	"product-service/internal/model"
 
@@ -25,14 +26,22 @@ func (r *ProductRepository) GetProductById(id int) (*model.Product, error) {
 	return &product, nil
 }
 
-func (r *ProductRepository) GetProducts() ([]model.Product, error) {
+func (r *ProductRepository) GetProducts(searchQuery string) ([]model.Product, error) {
+	fmt.Println(searchQuery)
 	var products []model.Product
-	result := r.DB.Find(&products)
-	if result.Error != nil {
-		return nil, result.Error
+
+	query := r.DB
+	if searchQuery != "" {
+		query = query.Where("name ILIKE ?", "%"+searchQuery+"%")
 	}
+
+	if err := query.Find(&products).Error; err != nil {
+		return nil, err
+	}
+
 	return products, nil
 }
+
 func (r *ProductRepository) UpdateProduct(id int, updatedProduct *model.Product) error {
 	product, err := r.GetProductById(id)
 	if err != nil {

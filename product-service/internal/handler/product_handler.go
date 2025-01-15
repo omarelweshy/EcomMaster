@@ -38,7 +38,8 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 }
 
 func (h *ProductHandler) GetAllProducts(c *gin.Context) {
-	products, err := h.ProductService.GetProducts()
+	searchQuery, _ := c.GetQuery("search")
+	products, err := h.ProductService.GetProducts(searchQuery)
 	if err != nil {
 		util.RespondWithError(c, http.StatusBadRequest, "Unable to fetch the products", nil)
 		return

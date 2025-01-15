@@ -20,8 +20,8 @@ func (s *ProductService) CreateProduct(name string, description string, price fl
 	return s.Repo.CreateProduct(&product)
 }
 
-func (s *ProductService) GetProducts() ([]model.Product, error) {
-	products, err := s.Repo.GetProducts()
+func (s *ProductService) GetProducts(searchQuery string) ([]model.Product, error) {
+	products, err := s.Repo.GetProducts(searchQuery)
 	if err != nil {
 		return nil, err
 	}
