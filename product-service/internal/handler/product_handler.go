@@ -3,11 +3,12 @@ package handler
 import (
 	"net/http"
 
+	"product-service/internal/form"
+	"product-service/internal/service"
+	"product-service/internal/util"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/form"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/service"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/util"
 )
 
 type ProductHandler struct {
@@ -33,5 +34,15 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 		return
 	}
 	util.RespondWithSuccess(c, "product created", nil)
+	return
+}
+
+func (h *ProductHandler) GetAllProducts(c *gin.Context) {
+	products, err := h.ProductService.GetProducts()
+	if err != nil {
+		util.RespondWithError(c, http.StatusBadRequest, "Unable to fetch the products", nil)
+		return
+	}
+	util.RespondWithSuccess(c, "products fetched", products)
 	return
 }

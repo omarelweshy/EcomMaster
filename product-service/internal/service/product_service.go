@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/omarelweshy/EcomMaster-product-service/internal/model"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/repository"
+	"product-service/internal/model"
+	"product-service/internal/repository"
 )
 
 type ProductService struct {
@@ -18,4 +18,12 @@ func (s *ProductService) CreateProduct(name string, description string, price fl
 		// Categories:  categories,
 	}
 	return s.Repo.CreateProduct(&product)
+}
+
+func (s *ProductService) GetProducts() ([]model.Product, error) {
+	products, err := s.Repo.GetProducts()
+	if err != nil {
+		return nil, err
+	}
+	return products, nil
 }

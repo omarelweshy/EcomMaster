@@ -3,7 +3,8 @@ package repository
 import (
 	"errors"
 
-	"github.com/omarelweshy/EcomMaster-product-service/internal/model"
+	"product-service/internal/model"
+
 	"gorm.io/gorm"
 )
 
@@ -24,6 +25,14 @@ func (r *ProductRepository) GetProductById(id int) (*model.Product, error) {
 	return &product, nil
 }
 
+func (r *ProductRepository) GetProducts() ([]model.Product, error) {
+	var products []model.Product
+	result := r.DB.Find(&products)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return products, nil
+}
 func (r *ProductRepository) UpdateProduct(id int, updatedProduct *model.Product) error {
 	product, err := r.GetProductById(id)
 	if err != nil {

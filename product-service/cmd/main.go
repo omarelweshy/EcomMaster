@@ -5,9 +5,10 @@ import (
 	"log"
 	"os"
 
+	"product-service/internal/model"
+	"product-service/internal/router"
+
 	"github.com/joho/godotenv"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/model"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/router"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

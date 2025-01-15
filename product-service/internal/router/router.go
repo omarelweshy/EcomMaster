@@ -1,10 +1,11 @@
 package router
 
 import (
+	"product-service/internal/handler"
+	"product-service/internal/repository"
+	"product-service/internal/service"
+
 	"github.com/gin-gonic/gin"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/handler"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/repository"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/service"
 	"gorm.io/gorm"
 )
 
@@ -17,6 +18,7 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	// r.Use(middleware.Logging())
 	// r.Use(middleware.ErrorHandler())
 
-	r.POST("/product/create", productHandler.CreateProduct)
+	r.POST("/products", productHandler.CreateProduct)
+	r.GET("/products", productHandler.GetAllProducts)
 	return r
 }

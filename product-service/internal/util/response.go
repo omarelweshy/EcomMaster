@@ -3,8 +3,9 @@ package util
 import (
 	"net/http"
 
+	"product-service/internal/model"
+
 	"github.com/gin-gonic/gin"
-	"github.com/omarelweshy/EcomMaster-product-service/internal/model"
 )
 
 func RespondWithError(c *gin.Context, statusCode int, message string, errors interface{}) {
