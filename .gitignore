@@ -2,3 +2,4 @@ data
 .env
 tmp
 product-service/tmp
+.air.toml
