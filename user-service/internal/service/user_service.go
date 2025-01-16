@@ -1,10 +1,17 @@
 package service
 
 import (
+	"context"
 	"errors"
 
 	"user-service/internal/model"
 	"user-service/internal/repository"
+	"user-service/internal/util"
+
+	pb "user-service/user"
+
+	grpcCodes "google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -62,4 +69,33 @@ func (s *UserService) LoginUser(username, password string) (*model.User, error) 
 		return nil, ErrInvalidCredentials
 	}
 	return user, nil
+}
+
+func (s *UserService) AuthenticateUser(ctx context.Context, req *pb.AuthenticateRequest) (*pb.AuthenticateResponse, error) {
+	user, err := s.Repo.GetUserByUsername(req.Username)
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, status.Errorf(grpcCodes.Unauthenticated, "invalid credentials")
+		}
+		return nil, status.Errorf(grpcCodes.Unauthenticated, "invalid credentials")
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(req.Password))
+	if err != nil {
+		return nil, status.Errorf(grpcCodes.Unauthenticated, "invalid credentials")
+	}
+
+	token, err := util.GenerateJWT(user.Username)
+	if err != nil {
+		return nil, status.Errorf(grpcCodes.Unauthenticated, "invalid credentials")
+	}
+	return &pb.AuthenticateResponse{Token: token}, nil
+}
+
+func (s *UserService) ValidateToken(ctx context.Context, req *pb.ValidateTokenRequest) (*pb.ValidateTokenResponse, error) {
+	claims, err := util.ValidateJWT(req.Token)
+	if err != nil {
+		return &pb.ValidateTokenResponse{Username: claims.Username, Valid: true}, nil
+	}
+	return &pb.ValidateTokenResponse{Valid: false}, nil
 }

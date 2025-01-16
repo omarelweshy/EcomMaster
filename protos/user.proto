@@ -23,7 +23,7 @@ message ValidateTokenRequest {
 }
 
 message ValidateTokenResponse {
-  string user_id = 1;
+  string username= 1;
   bool valid = 2;
 }
 
